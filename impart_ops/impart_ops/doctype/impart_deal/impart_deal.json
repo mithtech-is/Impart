@@ -1,0 +1,433 @@
+{
+ "actions": [],
+ "autoname": "IMPART-DEAL-.YYYY.-.#####",
+ "creation": "2026-09-28 00:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer",
+  "customer_name",
+  "location",
+  "column_break_cust",
+  "item_code",
+  "item_name",
+  "qty",
+  "uom",
+  "deal_date",
+  "workflow_state",
+  "company",
+  "section_break_desc",
+  "description",
+  "section_break_vendor",
+  "selected_supplier",
+  "request_for_quotation",
+  "supplier_quotation",
+  "column_break_vendor",
+  "opportunity",
+  "quotation",
+  "sales_order",
+  "section_break_pricing",
+  "vendor_currency",
+  "vendor_rate",
+  "exchange_rate",
+  "vendor_amount_inr",
+  "column_break_pricing",
+  "fx_buffer_pct",
+  "customs_duty_pct",
+  "freight_inr",
+  "margin_pct",
+  "gst_pct",
+  "section_break_computed",
+  "landed_cost_inr",
+  "final_rate_inr",
+  "final_quotation_value_inr",
+  "section_break_logistics",
+  "purchase_order",
+  "awb_bl_no",
+  "column_break_logistics",
+  "eta",
+  "weight_kg",
+  "section_break_fulfillment",
+  "purchase_invoice",
+  "purchase_receipt",
+  "column_break_fulfillment",
+  "delivery_note",
+  "sales_invoice",
+  "section_break_ladder",
+  "ladder",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location (Delivery / Billing city)"
+  },
+  {
+   "fieldname": "column_break_cust",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.item_name",
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "qty",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Qty",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "item_code.stock_uom",
+   "fieldname": "uom",
+   "fieldtype": "Link",
+   "label": "UOM",
+   "options": "UOM",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "deal_date",
+   "fieldtype": "Date",
+   "label": "Deal Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "workflow_state",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Stage",
+   "no_copy": 1,
+   "options": "Workflow State",
+   "read_only": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_desc",
+   "fieldtype": "Section Break",
+   "label": "Requirement"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description / Specification"
+  },
+  {
+   "collapsible": 0,
+   "fieldname": "section_break_vendor",
+   "fieldtype": "Section Break",
+   "label": "Vendor Side (Foreign Principal)"
+  },
+  {
+   "fieldname": "selected_supplier",
+   "fieldtype": "Link",
+   "label": "Selected Vendor",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "request_for_quotation",
+   "fieldtype": "Link",
+   "label": "Request for Quotation",
+   "no_copy": 1,
+   "options": "Request for Quotation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supplier_quotation",
+   "fieldtype": "Link",
+   "label": "Latest Supplier Quotation",
+   "no_copy": 1,
+   "options": "Supplier Quotation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_vendor",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "opportunity",
+   "fieldtype": "Link",
+   "label": "Opportunity",
+   "no_copy": 1,
+   "options": "Opportunity",
+   "read_only": 1
+  },
+  {
+   "fieldname": "quotation",
+   "fieldtype": "Link",
+   "label": "Latest Customer Quotation",
+   "no_copy": 1,
+   "options": "Quotation",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "no_copy": 1,
+   "options": "Sales Order",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_pricing",
+   "fieldtype": "Section Break",
+   "label": "Pricing Calculator (Vendor Ask → Customer Bid)"
+  },
+  {
+   "default": "USD",
+   "fieldname": "vendor_currency",
+   "fieldtype": "Link",
+   "label": "Vendor Currency",
+   "options": "Currency"
+  },
+  {
+   "fieldname": "vendor_rate",
+   "fieldtype": "Currency",
+   "label": "Vendor Rate (per unit)",
+   "options": "vendor_currency"
+  },
+  {
+   "default": "1",
+   "fieldname": "exchange_rate",
+   "fieldtype": "Float",
+   "label": "Exchange Rate (to INR)",
+   "precision": "4"
+  },
+  {
+   "fieldname": "vendor_amount_inr",
+   "fieldtype": "Currency",
+   "label": "Vendor Amount (INR)",
+   "options": "INR",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fx_buffer_pct",
+   "fieldtype": "Percent",
+   "label": "FX Buffer %"
+  },
+  {
+   "fieldname": "customs_duty_pct",
+   "fieldtype": "Percent",
+   "label": "Customs Duty %"
+  },
+  {
+   "fieldname": "freight_inr",
+   "fieldtype": "Currency",
+   "label": "Freight / Logistics (INR)",
+   "options": "INR"
+  },
+  {
+   "fieldname": "margin_pct",
+   "fieldtype": "Percent",
+   "label": "Impart Margin %"
+  },
+  {
+   "default": "18",
+   "fieldname": "gst_pct",
+   "fieldtype": "Percent",
+   "label": "GST %"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_computed",
+   "fieldtype": "Section Break",
+   "label": "Computed (Read Only)"
+  },
+  {
+   "fieldname": "landed_cost_inr",
+   "fieldtype": "Currency",
+   "label": "Landed Cost per unit (INR, before margin)",
+   "options": "INR",
+   "read_only": 1
+  },
+  {
+   "fieldname": "final_rate_inr",
+   "fieldtype": "Currency",
+   "label": "Final Quoted Rate per unit (INR, before GST)",
+   "options": "INR",
+   "read_only": 1
+  },
+  {
+   "fieldname": "final_quotation_value_inr",
+   "fieldtype": "Currency",
+   "label": "Final Quotation Value (INR, incl. GST)",
+   "options": "INR",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_logistics",
+   "fieldtype": "Section Break",
+   "label": "Logistics & Shipment"
+  },
+  {
+   "fieldname": "purchase_order",
+   "fieldtype": "Link",
+   "label": "Purchase Order (to Vendor)",
+   "no_copy": 1,
+   "options": "Purchase Order",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "purchase_order.custom_awb_bl_no",
+   "fieldname": "awb_bl_no",
+   "fieldtype": "Data",
+   "label": "AWB / BL No",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_logistics",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "purchase_order.custom_eta",
+   "fieldname": "eta",
+   "fieldtype": "Date",
+   "label": "ETA"
+  },
+  {
+   "fetch_from": "purchase_order.total_net_weight",
+   "fieldname": "weight_kg",
+   "fieldtype": "Float",
+   "label": "Weight (KG)",
+   "read_only": 1
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_fulfillment",
+   "fieldtype": "Section Break",
+   "label": "Billing & Fulfillment"
+  },
+  {
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Link",
+   "label": "Principal Invoice (Purchase Invoice)",
+   "no_copy": 1,
+   "options": "Purchase Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "purchase_receipt",
+   "fieldtype": "Link",
+   "label": "Purchase Receipt",
+   "no_copy": 1,
+   "options": "Purchase Receipt",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fulfillment",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "delivery_note",
+   "fieldtype": "Link",
+   "label": "Delivery Note",
+   "no_copy": 1,
+   "options": "Delivery Note",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Customer Invoice (Sales Invoice)",
+   "no_copy": 1,
+   "options": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_ladder",
+   "fieldtype": "Section Break",
+   "label": "Bid / Ask Ladder (Negotiation Log)"
+  },
+  {
+   "fieldname": "ladder",
+   "fieldtype": "Table",
+   "options": "Impart Deal Entry"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Internal Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-09-28 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Impart Ops",
+ "name": "Impart Deal",
+ "naming_rule": "Expression (old style)",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Impart User",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "customer_name",
+ "track_changes": 1
+}
